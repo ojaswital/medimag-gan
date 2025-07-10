@@ -1,0 +1,31 @@
+device: "cuda"           # or 'cpu'
+
+# Dataset / DataLoader parameters
+dataset:
+  root:  "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge/stage_2_train_images"
+  test_root: "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge/stage_2_test_images"
+  batch_size: 64
+  shuffle: True
+  num_workers: 4
+  pin_memory: True
+
+# Model / training hyperparameters
+model:
+  name: "wgan"
+  z_dim: 100
+  num_epochs: 50
+  lr_G: 0.0003
+  lr_D: 0.0001
+  betas: [0.5, 0.999]
+  instance_noise_std: 0.05
+  G_steps_per_D: 2
+
+# Saving outputs
+save:
+  save_dir: "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge"
+  checkpoints_folder: "checkpoints_gan"
+
+# For evaluation only
+output:
+  best_model_name: "G_epoch20.pth"
+  results_folder: "results"

@@ -1,0 +1,37 @@
+device: "cuda"
+
+# Dataset / DataLoader parameters
+dataset:
+  root: "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge/stage_2_train_images"
+  test_root: "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge/stage_2_test_images"
+  batch_size: 32
+  shuffle: True
+  num_workers: 4
+  pin_memory: True
+
+# Model / training hyperparameters
+model:
+  name: "diffusion"
+  time_dim: 128
+  base_ch: 64
+
+diffusion:
+  T: 1000
+
+optimizer:
+  lr: 0.0001
+
+training:
+  epochs: 25
+  sample_interval: 10
+  sample_dir: "samples"
+
+# Saving outputs
+save:
+  save_dir: "/content/drive/MyDrive/Colab_Notebooks/Chest_Xray_Synthesis_GAN_RSNA/rsna-pneumonia-detection-challenge"
+  checkpoints_folder: "checkpoints_diffusion"
+
+# For evaluation only
+output:
+  best_model_name: "model_epoch025.pth"
+  results_folder: "results"
